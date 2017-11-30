@@ -18,8 +18,7 @@ import io.github.kexanie.library.MathView;
 
 public class MainActivity extends AppCompatActivity {
     //TODO dodac scrolla
-    //TODO parse bigDecimal -> co jak w wyniku przeksztalcenia powstanie big cecimal np. (NWW (10^8 i 10^8 + 1)
-    //dodać loga
+    //TODO dodać loga
     Button buttonCompute;
     ColorStateList defaultTextViewColors;
     ColorStateList defaultEditTextColors;

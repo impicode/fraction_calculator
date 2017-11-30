@@ -7,8 +7,8 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="495dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -27,9 +27,8 @@
                     style="@style/EditTextNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:nextFocusForward="@id/edit_left_denominator"
                     android:hint="22"
-                    />
+                    android:nextFocusForward="@id/edit_left_denominator" />
 
                 <View
                     android:layout_width="match_parent"
@@ -38,13 +37,12 @@
 
                 <EditText
                     android:id="@+id/edit_left_denominator"
-                    android:nextFocusForward="@id/edit_right_numerator"
                     style="@style/EditTextNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:hint="34"
-                    />
+                    android:nextFocusForward="@id/edit_right_numerator" />
 
             </LinearLayout>
 
@@ -69,25 +67,25 @@
 
                 <EditText
                     android:id="@+id/edit_right_numerator"
-                    android:nextFocusForward="@id/edit_right_denominator"
                     style="@style/EditTextNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="38" />
+                    android:hint="38"
+                    android:nextFocusForward="@id/edit_right_denominator" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="4dip"
                     android:background="#000000" />
 
-                <EditText style="@style/EditTextNumber"
+                <EditText
                     android:id="@+id/edit_right_denominator"
+                    style="@style/EditTextNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:hint="47"
-                    android:imeOptions="actionGo"
-                    />
+                    android:imeOptions="actionGo" />
             </LinearLayout>
         </LinearLayout>
 
@@ -101,15 +99,22 @@
             android:id="@+id/text_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text=""
 
             android:visibility="invisible" />
 
-        <io.github.kexanie.library.MathView
-            android:id="@+id/text_result_mathview"
+        <ScrollView
+            android:fadeScrollbars="false"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_height="match_parent">
+
+            <io.github.kexanie.library.MathView
+                android:id="@+id/text_result_mathview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </ScrollView>
 
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
