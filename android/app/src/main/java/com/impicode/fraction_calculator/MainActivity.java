@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.math.BigInteger;
+
 import io.github.kexanie.library.MathView;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,25 +52,25 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static class Fraction {
-        public int numerator;
-        public int denominator;
+        public BigInteger numerator;
+        public BigInteger denominator;
 
-        public Fraction(int n, int d) {
+        public Fraction(BigInteger n, BigInteger d) {
             numerator = n;
             denominator = d;
         }
     }
 
 
-    private static int GCD(int a, int b) {
-        if (b == 0) {
+    private static BigInteger GCD(BigInteger a, BigInteger b) {
+        if (b.equals(BigInteger.ZERO)) {
             return a;
         }
-        return GCD(b, a % b);
+        return GCD(b, a.mod(b));
     }
 
-    public static int LCM(int a, int b) {
-        return a * b / GCD(a, b);
+    public static BigInteger LCM(BigInteger a, BigInteger b) {
+        return a.multiply(b).divide(GCD(a, b));
     }
 
     private String getEditText(int id) {
@@ -101,11 +103,11 @@ public class MainActivity extends AppCompatActivity {
                 getEditText(R.id.edit_left_numerator), getEditText(R.id.edit_left_denominator));
         Fraction right = buildFraction(
                 getEditText(R.id.edit_right_numerator), getEditText(R.id.edit_right_denominator));
-        if (left.denominator == 0 || right.denominator == 0) {
-            if (left.denominator == 0) {
+        if (left.denominator.equals(BigInteger.ZERO) || right.denominator.equals(BigInteger.ZERO)) {
+            if (left.denominator.equals(BigInteger.ZERO)) {
                 makeBold(R.id.edit_left_denominator);
             }
-            if (right.denominator == 0) {
+            if (right.denominator.equals(BigInteger.ZERO)) {
                 makeBold(R.id.edit_right_denominator);
             }
             setAlertMessage(getResources().getString(R.string.cannot_divide_by_zero));
@@ -113,17 +115,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         String resultMsg = "";
-        int commonDenominator = LCM(left.denominator, right.denominator);
+        BigInteger commonDenominator = LCM(left.denominator, right.denominator);
 
         resultMsg += printFraction(left) + "+" + printFraction(right);
         resultMsg += "=";
-        int leftFactor = commonDenominator / left.denominator;
-        int rightFactor = commonDenominator / right.denominator;
-        if (leftFactor != 1 || rightFactor != 1) {
+        BigInteger leftFactor = commonDenominator.divide(left.denominator);
+        BigInteger rightFactor = commonDenominator.divide(right.denominator);
+        if (!leftFactor.equals(BigInteger.ONE) || !rightFactor.equals(BigInteger.ONE)) {
             resultMsg += printFactor(left, leftFactor) + "+" +
                     printFactor(right, rightFactor);
-            left.numerator *= leftFactor;
-            right.numerator *= rightFactor;
+            left.numerator = left.numerator.multiply(leftFactor);
+            right.numerator = right.numerator.multiply(rightFactor);
             left.denominator = commonDenominator;
             right.denominator = commonDenominator;
             resultMsg += "=";
@@ -132,34 +134,34 @@ public class MainActivity extends AppCompatActivity {
         }
 
         resultMsg += printFraction(left.numerator + " + " + right.numerator, commonDenominator + "");
-        Fraction result = new Fraction(left.numerator + right.numerator, commonDenominator);
+        Fraction result = new Fraction(left.numerator.add(right.numerator), commonDenominator);
         resultMsg += "=";
         resultMsg += printFraction(result);
-        int gcd = GCD(result.denominator, result.numerator);
-        if (gcd > 1 && result.numerator != 0) {
+        BigInteger gcd = GCD(result.denominator, result.numerator);
+        if (gcd.compareTo(BigInteger.ONE) > 0 && !result.numerator.equals(BigInteger.ZERO)) {
             resultMsg += " = " + printFraction(result.numerator + "\\div " + getColored(gcd),
                     result.denominator + "\\div " + getColored(gcd));
-            result.numerator /= gcd;
-            result.denominator /= gcd;
+            result.numerator = result.numerator.divide(gcd);
+            result.denominator = result.denominator.divide(gcd);
             resultMsg += " = " + printFraction(result);
         }
 
-        if (result.numerator == 0) {
+        if (result.numerator.equals(BigInteger.ZERO)) {
             resultMsg += " = 0";
         } else {
-            if (result.denominator <= result.numerator) {
-                int big = result.numerator / result.denominator;
+            if (result.denominator.compareTo(result.numerator) <= 0) {
+                BigInteger big = result.numerator.divide(result.denominator);
                 resultMsg += " = ";
-                if (result.denominator != 1) {
+                if (!result.denominator.equals(BigInteger.ONE)) {
                     resultMsg += printFraction(
                             big + "\\cdot " + getColored(result.denominator + "") + " + "
-                                    + (result.numerator - result.denominator * big),
+                                    + (result.numerator.subtract(result.denominator.multiply(big))),
                             getColored(result.denominator + ""));
                     resultMsg += " = ";
                 }
                 resultMsg += big;
-                result.numerator -= result.denominator * big;
-                if (result.numerator != 0) {
+                result.numerator = result.numerator.subtract(result.denominator.multiply(big));
+                if (!result.numerator.equals(BigInteger.ZERO)) {
                     resultMsg += printFraction(result);
                 }
             }
@@ -174,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                         "  CommonHTML: { linebreaks: { automatic: true } },\n"+
                         "  \"HTML-CSS\": { linebreaks: { automatic: true } },\n"+
                         "         SVG: { linebreaks: { automatic: true } }\n"+
-                        "});");;
+                        "});");
         ((MathView)findViewById(R.id.text_result_mathview)).setText("\\begin{equation}" + msg + "\\end{equation}");
 
     }
@@ -197,8 +199,8 @@ public class MainActivity extends AppCompatActivity {
         getEditTextControl(R.id.edit_right_denominator).setTextColor(defaultEditTextColors);
     }
 
-    private static String printFactor(Fraction fraction, int factor) {
-        return factor == 1
+    private static String printFactor(Fraction fraction, BigInteger factor) {
+        return factor.equals(BigInteger.ONE)
             ? printFraction(fraction)
             : printFraction(
                 fraction.numerator + " \\cdot " + getColored(factor),
@@ -211,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private static String getColored(int s) {
+    private static String getColored(BigInteger s) {
         return getColored(s + "");
     }
 
@@ -219,8 +221,8 @@ public class MainActivity extends AppCompatActivity {
         return "\\frac{" + left + "}{" + right + "}";
     }
 
-    private static String printFraction(int left, int right) {
-        return printFraction(Integer.toString(left), Integer.toString(right));
+    private static String printFraction(BigInteger left, BigInteger right) {
+        return printFraction(left.toString(), right.toString());
     }
 
     private static String printFraction(Fraction f) {
@@ -229,6 +231,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private Fraction buildFraction(String nominator, String denominator) {
-        return new Fraction(Integer.parseInt(nominator), Integer.parseInt(denominator));
+        return new Fraction(new BigInteger(nominator), new BigInteger(denominator));
     }
 }
