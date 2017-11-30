@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Fraction calculator</string>
+    <string name="compute">Compute</string>
+    <string name="cannot_divide_by_zero">Cannot divide by zero</string>
+</resources>

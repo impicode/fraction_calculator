@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kalkulator ułamków</string>
+    <string name="compute">Przelicz</string>
+    <string name="cannot_divide_by_zero">Nie można dzielić przez zero</string>
+</resources>
