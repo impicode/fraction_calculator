@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "607067047583",
+    "firebase_url": "https://fraction-calculator-fae66.firebaseio.com",
+    "project_id": "fraction-calculator-fae66",
+    "storage_bucket": "fraction-calculator-fae66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607067047583:android:fc6e1e804ed32e91",
+        "android_client_info": {
+          "package_name": "com.impicode.fraction_calculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "607067047583-pier60c7nqtkrvp5ok901nkp0utfr895.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.impicode.fraction_calculator",
+            "certificate_hash": "a7edaad4876c79e5dedfa0a8919bfbd44a22f04f"
+          }
+        },
+        {
+          "client_id": "607067047583-uf7d2k6iij7d0jc84vt2qp5ajogtbb3m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXp7le4MtPZSkPrYyyjEbhbZVfWUx-Qwg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "607067047583-uf7d2k6iij7d0jc84vt2qp5ajogtbb3m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

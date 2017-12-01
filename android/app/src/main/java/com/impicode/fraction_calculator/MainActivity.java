@@ -12,19 +12,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.math.BigInteger;
 
 import io.github.kexanie.library.MathView;
 
 public class MainActivity extends AppCompatActivity {
     //TODO dodać firebase
-    Button buttonCompute;
-    ColorStateList defaultTextViewColors;
-    ColorStateList defaultEditTextColors;
+    private Button buttonCompute;
+    private ColorStateList defaultTextViewColors;
+    private ColorStateList defaultEditTextColors;
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         buttonCompute = findViewById(R.id.button_compute);
 
