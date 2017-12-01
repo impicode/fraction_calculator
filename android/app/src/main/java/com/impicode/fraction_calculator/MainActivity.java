@@ -17,8 +17,8 @@ import java.math.BigInteger;
 import io.github.kexanie.library.MathView;
 
 public class MainActivity extends AppCompatActivity {
-    //TODO dodac scrolla
-    //TODO dodać loga
+    //TODO dodać firebase
+    //TODO zmienic wyglad przycisku na ladniejszy [niebieski] i poprawić te czcionki tekstu
     Button buttonCompute;
     ColorStateList defaultTextViewColors;
     ColorStateList defaultEditTextColors;
