@@ -89,7 +89,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <Button
+        <Button style="@style/tapButton"
             android:id="@+id/button_compute"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -5,9 +5,18 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">#155fd6</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
     </style>
+
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+
     <style name="EditTextNumber">
+        <item name="android:fontFamily">casual</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:ems">3</item>
         <item name="android:inputType">number|none</item>
         <item name="android:maxLength">8</item>
@@ -16,5 +25,11 @@
         <item name="android:layout_marginRight">40dp</item>
         <item name="android:gravity">center</item>
         <item name="android:imeOptions">actionNext</item>
+    </style>
+
+    <style name="tapButton" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">#155fd6</item>
+        <item name="android:fontFamily">casual</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

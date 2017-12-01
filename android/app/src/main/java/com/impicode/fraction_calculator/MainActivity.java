@@ -18,7 +18,6 @@ import io.github.kexanie.library.MathView;
 
 public class MainActivity extends AppCompatActivity {
     //TODO dodać firebase
-    //TODO zmienic wyglad przycisku na ladniejszy [niebieski] i poprawić te czcionki tekstu
     Button buttonCompute;
     ColorStateList defaultTextViewColors;
     ColorStateList defaultEditTextColors;
