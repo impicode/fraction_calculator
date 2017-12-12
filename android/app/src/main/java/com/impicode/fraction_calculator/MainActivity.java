@@ -19,7 +19,6 @@ import java.math.BigInteger;
 import io.github.kexanie.library.MathView;
 
 public class MainActivity extends AppCompatActivity {
-    //TODO dodać firebase
     private Button buttonCompute;
     private ColorStateList defaultTextViewColors;
     private ColorStateList defaultEditTextColors;
